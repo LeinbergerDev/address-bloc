@@ -48,15 +48,18 @@ class AddressBook
       mid = (lower + upper) / 2
       mid_name = entries[mid].name
       if name == mid_name
-        puts "it took #{index} iterations to find the entry"
+        index += 1
+        puts "it took #{index} evaluations to find the entry"
         return entries[mid]
       elsif name < mid_name
+        index += 1
         upper = mid - 1
       elsif name > mid_name
+        index += 1
         lower = mid + 1
       end
     end
-    puts "it took #{index} iterations to find that the entry doesn't exist"
+    puts "it took #{index} evaluations to find that the entry doesn't exist"
     return nil
   end
 
@@ -65,12 +68,16 @@ class AddressBook
     entries.each do |entry|
       index += 1
       if entry.name == name
-        puts "it took #{index} iterations to find the entry"
+
+        puts "it took #{index} evaluations to find the entry"
         return entry
       end
     end
-    puts "it took #{index} iterations to find that the entry doesn't exist"
+    puts "it took #{index} evaluations to find that the entry doesn't exist"
     return nil
   end
 
+  def nuke
+    entries.clear
+  end
 end
