@@ -42,10 +42,13 @@ class AddressBook
   def binary_search(name)
     lower = 0
     upper = entries.length - 1
+    index = 0
     while lower <= upper
+      index += 1
       mid = (lower + upper) / 2
       mid_name = entries[mid].name
       if name == mid_name
+        puts "it took #{index} iterations to find the entry"
         return entries[mid]
       elsif name < mid_name
         upper = mid - 1
@@ -53,6 +56,21 @@ class AddressBook
         lower = mid + 1
       end
     end
+    puts "it took #{index} iterations to find that the entry doesn't exist"
     return nil
   end
+
+  def iterative_search(name)
+    index = 0
+    entries.each do |entry|
+      index += 1
+      if entry.name == name
+        puts "it took #{index} iterations to find the entry"
+        return entry
+      end
+    end
+    puts "it took #{index} iterations to find that the entry doesn't exist"
+    return nil
+  end
+
 end
